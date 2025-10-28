@@ -11,7 +11,7 @@ function App() {
       <div className="w-dvw h-dvh flex justify-center items-center-safe bg-blue-500">
         <Toaster richColors position="bottom-right" />
         <Routes>
-          <Route path="/" element={<Navigate to="/login" replace />} />
+          <Route path="/" element={<Navigate to="/home" replace />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
 
