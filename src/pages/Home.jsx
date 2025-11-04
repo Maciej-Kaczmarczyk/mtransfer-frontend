@@ -1,13 +1,43 @@
 import React from "react";
 import MTransfer_logo from "../assets/MTransfer_logo.svg";
 import FileCard from "../components/FileCard";
+import { useAuthStore } from "../store/authStore";
+import { useNavigate } from "react-router";
+import Cookies from "js-cookie";
+import { toast } from "sonner";
 
 const Home = () => {
+  const userEmail = useAuthStore((state) => state.email);
+  const logout = useAuthStore((state) => state.logout);
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    Cookies.remove("token");
+    logout();
+    toast.success("Wylogowano pomyślnie 👋");
+    navigate("/login");
+  };
+
   return (
     <div className="p-8 flex flex-col items-center justify-start w-dvw h-dvh gap-4">
       <div className="w-full flex justify-between">
         <img src={MTransfer_logo} alt="MTransfer Logo" className="w-52 p-4" />
-        <div className=" w-1/3 p-4 bg-white rounded-lg flex flex-col items-center justify-start gap-4 shadow-lg"></div>
+        <div className=" w-1/3 p-4 bg-white rounded-lg flex items-center justify-between gap-4 shadow-lg">
+          <div className="flex items-center gap-4">
+            <div className="relative w-10 h-10 overflow-hidden bg-gray-100 rounded-full dark:bg-blue-500">
+              <svg className="absolute w-12 h-12 text-blue-400 -left-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                <path fillRule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clipRule="evenodd"></path>
+              </svg>
+            </div>
+            <p>Witaj {userEmail}</p>
+          </div>
+          <button onClick={handleLogout} className="text-xs w-1/3 font-semibold px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 hover:cursor-pointer flex items-center justify-center gap-2 pr-4">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-6">
+              <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 9V5.25A2.25 2.25 0 0 0 13.5 3h-6a2.25 2.25 0 0 0-2.25 2.25v13.5A2.25 2.25 0 0 0 7.5 21h6a2.25 2.25 0 0 0 2.25-2.25V15M12 9l-3 3m0 0 3 3m-3-3h12.75" />
+            </svg>
+            Wyloguj
+          </button>
+        </div>
       </div>
       <div className="flex gap-4 w-full h-full">
         <div className=" w-1/3 h-fit p-4 bg-white rounded-xl flex flex-col items-center justify-start gap-4 shadow-lg">

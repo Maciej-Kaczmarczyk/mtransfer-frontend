@@ -3,22 +3,25 @@ import { useNavigate, NavLink } from "react-router-dom";
 import { toast } from "sonner";
 import { login } from "../api/auth";
 import MTransfer_logo from "../assets/MTransfer_logo.svg";
+import { useAuthStore } from "../store/authStore";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
+  const setUser = useAuthStore((state) => state.setUser);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     try {
       const res = await login(email, password);
-      toast.success("Zalogowano pomyślnie ✅");
+      setUser({ email: email });
+      toast.success("Zalogowano pomyślnie");
       navigate("/home");
     } catch (err) {
-      toast.error(err.message || "Nieprawidłowy e-mail lub hasło ❌");
+      toast.error(err.message || "Nieprawidłowy e-mail lub hasło");
     }
   };
 

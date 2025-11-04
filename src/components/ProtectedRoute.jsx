@@ -2,15 +2,18 @@ import { useEffect, useState } from "react";
 import { Navigate, Outlet } from "react-router-dom";
 import { toast } from "sonner";
 import api from "../api/axios";
+import { useAuthStore } from "../store/authStore";
 
 const ProtectedRoute = () => {
   const [isAuthorized, setIsAuthorized] = useState(null);
+  const setUser = useAuthStore((state) => state.setUser);
 
   useEffect(() => {
     const verifyUser = async () => {
       try {
         const response = await api.get("/auth/verify");
         if (response.data.valid) {
+          setUser(response.data.user);
           setIsAuthorized(true);
         } else {
           setIsAuthorized(false);
@@ -25,7 +28,6 @@ const ProtectedRoute = () => {
     verifyUser();
   }, []);
 
-  // Poczekaj na wynik weryfikacji
   if (isAuthorized === null) {
     return (
       <div className="w-screen h-screen flex items-center justify-center">
