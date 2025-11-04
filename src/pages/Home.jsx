@@ -59,7 +59,10 @@ const Home = () => {
           </form>
           <button className="w-full text-sm font-semibold px-2 py-4 bg-blue-500 text-white rounded-lg hover:bg-blue-600 hover:cursor-pointer">Wyślij</button>
         </div>
-        <div className=" w-2/3 h-96 p-4 bg-white rounded-xl flex flex-wrap justify-between shadow-lg">
+        <div className="w-2/3 h-fit p-8 bg-white rounded-xl shadow-lg grid gap-8 grid-cols-1 sm:grid-cols-2 lg:grid-cols-4">
+          <FileCard />
+          <FileCard />
+          <FileCard />
           <FileCard />
           <FileCard />
           <FileCard />

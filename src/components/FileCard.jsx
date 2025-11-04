@@ -2,22 +2,23 @@ import React from "react";
 
 const FileCard = () => {
   return (
-    <div className=" w-40 h-40 aspect-square p-2 bg-white rounded-xl flex flex-col items-start justify-between shadow-md ring-1 ring-blue-300">
-      <div className="flex justify-between items-center w-full">
-        <h2 className="text-lg font-semibold text-gray-700">File Title</h2>
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="text-gray-700 size-6 hover:cursor-pointer">
+    <div className="w-full min-w-[220px] max-w-[280px] aspect-4/3 p-3 sm:p-4 bg-white rounded-xl flex flex-col items-start justify-between shadow-md ring-1 ring-blue-300 transition-transform hover:scale-[1.02] hover:shadow-lg duration-300">
+      <div className="flex justify-between items-start w-full">
+        <h2 className="text-lg sm:text-xl font-semibold text-gray-700 truncate">File Title</h2>
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="text-gray-700 w-5 h-5 sm:w-6 sm:h-6 hover:cursor-pointer">
           <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
         </svg>
       </div>
-      <div className="flex flex-col gap-1">
-          <p className="text-gray-700 text-sm">650 MB</p>
-          <p className="text-xs text-gray-600">
-            Wygaśnie za: <span className="text-gray-700 font-semibold">2 dni</span>
-          </p>
+      <div className="flex flex-col gap-1 w-full mt-2">
+        <p className="text-gray-700 text-sm sm:text-base">650 MB</p>
+        <p className="text-xs sm:text-sm text-gray-600">
+          Wygaśnie za: <span className="text-gray-700 font-semibold">2 dni</span>
+        </p>
       </div>
-      <div className="flex justify-between w-full ring-1 ring-gray-300 p-1 rounded-lg  items-center">
-        <p className="text-xs font-semibold">link/21421525125125</p>
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-4 text-gray-700 hover:cursor-pointer">
+      <div className="flex justify-between items-center w-full ring-1 ring-gray-300 py-2 px-2 rounded-lg mt-3">
+        <p className="text-xs sm:text-sm font-semibold truncate max-w-[60%]">link/21421525125125</p>
+
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-6  hover:cursor-pointer">
           <path
             strokeLinecap="round"
             strokeLinejoin="round"
