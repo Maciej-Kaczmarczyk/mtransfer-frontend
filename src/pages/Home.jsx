@@ -197,7 +197,7 @@ const Home = () => {
 
         {/* Prawy panel */}
         <div className="w-2/3 h-fit p-8 bg-white rounded-xl shadow-lg grid gap-8 grid-cols-1 sm:grid-cols-2 lg:grid-cols-4">
-          {userFiles.length > 0 ? userFiles.map((file) => <FileCard key={file.id} title={file.originalName} size={file.size} createdAt={file.createdAt} />) : <p className="text-gray-500 text-sm">Brak przesłanych plików</p>}
+          {userFiles.length > 0 ? userFiles.map((file) => <FileCard key={file.id} title={file.originalName} size={file.size} createdAt={file.createdAt} downloadId={file.downloadId} />) : <p className="text-gray-500 text-sm">Brak przesłanych plików</p>}
         </div>
       </div>
     </div>

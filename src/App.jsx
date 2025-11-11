@@ -4,6 +4,7 @@ import Home from "./pages/Home";
 import Register from "./pages/Register";
 import { Toaster } from "sonner";
 import ProtectedRoute from "./components/ProtectedRoute";
+import Download from "./pages/DownloadFile";
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
           <Route path="/" element={<Navigate to="/home" replace />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
+          <Route path="/f/:id" element={<Download />} />
 
           <Route element={<ProtectedRoute />}>
             <Route path="/home" element={<Home />} />

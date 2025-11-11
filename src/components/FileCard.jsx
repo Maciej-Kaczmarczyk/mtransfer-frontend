@@ -1,6 +1,14 @@
 import React from "react";
+import { toast } from "sonner";
 
-const FileCard = ({ title, size, createdAt }) => {
+const FileCard = ({ title, size, createdAt, downloadId }) => {
+  const handleCopyLink = () => {
+    const baseUrl = window.location.origin;
+    const link = `${baseUrl}/f/${downloadId}`;
+    navigator.clipboard.writeText(link);
+    toast.success("Link skopiowany do schowka ✅");
+  };
+
   return (
     <div className="w-full min-w-[220px] max-w-[280px] aspect-4/3 p-3 sm:p-4 bg-white rounded-xl flex flex-col items-start justify-between shadow-md ring-1 ring-blue-300 transition-transform hover:scale-[1.02] hover:shadow-lg duration-300">
       <div className="flex justify-between items-start w-full">
@@ -16,9 +24,9 @@ const FileCard = ({ title, size, createdAt }) => {
         </p>
       </div>
       <div className="flex justify-between items-center w-full ring-1 ring-gray-300 py-2 px-2 rounded-lg mt-3">
-        <p className="text-xs sm:text-sm font-semibold truncate max-w-[60%]">przykładowy link</p>
+        <p className="text-xs sm:text-sm font-semibold truncate max-w-[60%]">{`${import.meta.env.VITE_API_URL}/files/download/${downloadId}`}</p>
 
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-6  hover:cursor-pointer">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-6  hover:cursor-pointer" onClick={handleCopyLink}>
           <path
             strokeLinecap="round"
             strokeLinejoin="round"
