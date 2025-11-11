@@ -11,6 +11,7 @@ const Register = () => {
   const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
 
+  // obsługa rejestracji
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -30,20 +31,8 @@ const Register = () => {
         <div className="w-96 min-h-96 h-fit p-4 bg-white rounded-xl flex flex-col items-center justify-between shadow-lg py-8">
           <h2 className="text-2xl font-bold">Zarejestruj się</h2>
           <form onSubmit={handleSubmit} className="space-y-4 w-full py-8">
-            <input
-              type="text"
-              placeholder="Nazwa użytkownika"
-              className="w-full p-2 border-b border-gray-300 focus:rounded focus:outline-none focus:ring-1 focus:ring-blue-500 transition-all duration-300"
-              value={username}
-              onChange={(e) => setUsername(e.target.value)}
-            />
-            <input
-              type="email"
-              placeholder="Email"
-              className="w-full p-2 border-b border-gray-300 focus:rounded focus:outline-none focus:ring-1 focus:ring-blue-500 transition-all duration-300"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-            />
+            <input type="text" placeholder="Nazwa użytkownika" className="w-full p-2 border-b border-gray-300 focus:rounded focus:outline-none focus:ring-1 focus:ring-blue-500 transition-all duration-300" value={username} onChange={(e) => setUsername(e.target.value)} />
+            <input type="email" placeholder="Email" className="w-full p-2 border-b border-gray-300 focus:rounded focus:outline-none focus:ring-1 focus:ring-blue-500 transition-all duration-300" value={email} onChange={(e) => setEmail(e.target.value)} />
             <input
               type={showPassword ? "text" : "password"}
               placeholder="Hasło"
@@ -53,34 +42,20 @@ const Register = () => {
             />
 
             <div className="flex items-center">
-              <input
-                onChange={(e) => setShowPassword(e.target.checked)}
-                type="checkbox"
-                id="showPassword"
-                className="mr-2 hover:cursor-pointer"
-              />
-              <label
-                htmlFor="showPassword"
-                className="text-sm font-semibold text-gray-500 hover:cursor-pointer"
-              >
+              <input onChange={(e) => setShowPassword(e.target.checked)} type="checkbox" id="showPassword" className="mr-2 hover:cursor-pointer" />
+              <label htmlFor="showPassword" className="text-sm font-semibold text-gray-500 hover:cursor-pointer">
                 Pokaż hasło
               </label>
             </div>
 
-            <button
-              type="submit"
-              className="w-full font-semibold p-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 hover:cursor-pointer"
-            >
+            <button type="submit" className="w-full font-semibold p-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 hover:cursor-pointer">
               Zarejestruj się
             </button>
           </form>
 
           <p className="text-sm text-gray-500">
             Masz już konto?{" "}
-            <NavLink
-              to="/login"
-              className="text-blue-500 font-semibold hover:text-blue-600"
-            >
+            <NavLink to="/login" className="text-blue-500 font-semibold hover:text-blue-600">
               Zaloguj się
             </NavLink>
           </p>

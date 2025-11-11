@@ -12,6 +12,7 @@ const Login = () => {
   const navigate = useNavigate();
   const setUser = useAuthStore((state) => state.setUser);
 
+  // obsługa logowania
   const handleSubmit = async (e) => {
     e.preventDefault();
 

@@ -31,7 +31,7 @@ export const register = async (username, email, password) => {
       email,
       password,
     });
-    return response.data; // backend zwraca np. { message: "Rejestracja udana" }
+    return response.data;
   } catch (error) {
     console.error("Błąd rejestracji:", error);
     throw error.response?.data || { message: "Błąd rejestracji" };
