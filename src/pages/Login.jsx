@@ -30,7 +30,7 @@ const Login = () => {
     <div className="flex flex-col items-center justify-start w-dvw h-dvh">
       <img src={MTransfer_logo} alt="MTransfer Logo" className="w-52 p-4" />
       <div className="flex items-center justify-center w-full h-full">
-        <div className="w-96 h-96 p-4 bg-white rounded-xl flex flex-col items-center justify-between shadow-lg">
+        <div className="w-96 min-h-96 h-fit p-4 bg-white rounded-xl flex flex-col items-center justify-between shadow-lg py-8">
           <h2 className="text-2xl font-bold">Zaloguj się</h2>
 
           <form onSubmit={handleSubmit} className="space-y-4 w-full">

@@ -12,12 +12,13 @@ const Home = () => {
   const user = useAuthStore((state) => state.email);
   const logout = useAuthStore((state) => state.logout);
   const navigate = useNavigate();
-
   const [userFiles, setUserFiles] = useState([]);
+  const handleExpirationSelect = (e) => {
+    setExpirationDays(e.target.value);
+  };
 
   const [files, setFiles] = useState([]);
-  const [title, setTitle] = useState("");
-  const [message, setMessage] = useState("");
+  const [expirationDays, setExpirationDays] = useState("1");
   const [password, setPassword] = useState("");
   const [addPassword, setAddPassword] = useState(false);
   const [isUploading, setIsUploading] = useState(false);
@@ -42,8 +43,7 @@ const Home = () => {
 
     const formData = new FormData();
     files.forEach((f) => formData.append("files", f));
-    formData.append("title", title);
-    formData.append("message", message);
+    formData.append("expirationDays", expirationDays);
     if (addPassword && password) formData.append("password", password);
 
     try {
@@ -53,8 +53,7 @@ const Home = () => {
       await fetchFiles();
       console.log("Odpowiedź serwera:", res);
       setFiles([]);
-      setTitle("");
-      setMessage("");
+      setExpirationDays("1");
       setPassword("");
       setAddPassword(false);
     } catch (err) {
@@ -101,6 +100,7 @@ const Home = () => {
   const fetchFiles = async () => {
     try {
       const files = await getUserFiles();
+      console.log("Pobrane pliki użytkownika:", files);
       setUserFiles(files);
     } catch (err) {
       console.error("Błąd pobierania plików:", err);
@@ -180,8 +180,44 @@ const Home = () => {
               </label>
             </div>
 
-            <input type="text" placeholder="Tytuł" value={title} onChange={(e) => setTitle(e.target.value)} className="w-full p-2 border-b border-gray-300 focus:rounded focus:outline-none focus:ring-1 focus:ring-blue-500" />
-            <textarea rows="5" placeholder="Wiadomość" value={message} onChange={(e) => setMessage(e.target.value)} className="w-full h-24 p-2 border-b border-gray-300 focus:rounded focus:outline-none focus:ring-1 focus:ring-blue-500"></textarea>
+            <div className="flex w-full">
+              <p className="text-gray-500">Wybierz ważność pliku:</p>
+              <div className="w-full flex justify-around items-center">
+                <label className="cursor-pointer">
+                  <input type="radio" name="option" value="1" checked={expirationDays === "1"} onChange={handleExpirationSelect} className="hidden" />
+                  <span
+                    className={`px-4 py-2 rounded-lg text-sm font-semibold border
+        ${expirationDays === "1" ? "bg-blue-500 text-white border-blue-600" : "bg-gray-100 text-gray-600 border-gray-300"}
+      `}
+                  >
+                    1 dzień
+                  </span>
+                </label>
+
+                <label className="cursor-pointer">
+                  <input type="radio" name="option" value="7" checked={expirationDays === "7"} onChange={handleExpirationSelect} className="hidden" />
+                  <span
+                    className={`px-4 py-2 rounded-lg text-sm font-semibold border
+        ${expirationDays === "7" ? "bg-blue-500 text-white border-blue-600" : "bg-gray-100 text-gray-600 border-gray-300"}
+      `}
+                  >
+                    7 dni
+                  </span>
+                </label>
+
+                <label className="cursor-pointer">
+                  <input type="radio" name="option" value="14" checked={expirationDays === "14"} onChange={handleExpirationSelect} className="hidden" />
+                  <span
+                    className={`px-4 py-2 rounded-lg text-sm font-semibold border
+        ${expirationDays === "14" ? "bg-blue-500 text-white border-blue-600" : "bg-gray-100 text-gray-600 border-gray-300"}
+      `}
+                  >
+                    14 dni
+                  </span>
+                </label>
+              </div>
+            </div>
+
             <div className="flex flex-col w-full gap-2">
               <label className="flex items-center gap-2 cursor-pointer text-sm font-semibold text-gray-500">
                 <input type="checkbox" checked={addPassword} onChange={(e) => setAddPassword(e.target.checked)} className="accent-blue-500" />
@@ -189,6 +225,7 @@ const Home = () => {
               </label>
               {addPassword && <input type="password" placeholder="Hasło do pliku" value={password} onChange={(e) => setPassword(e.target.value)} className="w-full p-2 border-b border-gray-300 focus:rounded focus:outline-none focus:ring-1 focus:ring-blue-500" />}
             </div>
+
             <button type="submit" className="w-full text-sm font-semibold px-2 py-4 bg-blue-500 text-white rounded-lg hover:bg-blue-600 hover:cursor-pointer">
               Wyślij
             </button>
@@ -196,8 +233,8 @@ const Home = () => {
         </div>
 
         {/* Prawy panel */}
-        <div className="w-2/3 h-fit p-8 bg-white rounded-xl shadow-lg grid gap-8 grid-cols-1 sm:grid-cols-2 lg:grid-cols-4">
-          {userFiles.length > 0 ? userFiles.map((file) => <FileCard key={file.id} title={file.originalName} size={file.size} createdAt={file.createdAt} downloadId={file.downloadId} />) : <p className="text-gray-500 text-sm">Brak przesłanych plików</p>}
+        <div className="w-2/3 h-fit p-8 bg-white rounded-xl shadow-lg grid gap-8 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
+          {userFiles.length > 0 ? userFiles.map((file) => <FileCard key={file.id} title={file.originalName} size={file.size} createdAt={file.createdAt} downloadId={file.downloadId} expiresAt={file.expiresAt} />) : <p className="text-gray-500 text-sm">Brak przesłanych plików</p>}
         </div>
       </div>
     </div>

@@ -16,3 +16,70 @@ Note: This will impact Vite dev & build performances.
 ## Expanding the ESLint configuration
 
 If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+
+```
+MTransfer
+├─ .env
+├─ eslint.config.js
+├─ index.html
+├─ package-lock.json
+├─ package.json
+├─ public
+│  └─ vite.svg
+├─ README.md
+├─ src
+│  ├─ api
+│  │  ├─ auth.js
+│  │  ├─ axios.js
+│  │  └─ files.js
+│  ├─ App.jsx
+│  ├─ assets
+│  │  └─ MTransfer_logo.svg
+│  ├─ components
+│  │  ├─ FileCard.jsx
+│  │  └─ ProtectedRoute.jsx
+│  ├─ index.css
+│  ├─ main.jsx
+│  ├─ pages
+│  │  ├─ DownloadFile.jsx
+│  │  ├─ Home.jsx
+│  │  ├─ Login.jsx
+│  │  └─ Register.jsx
+│  └─ store
+│     └─ authStore.js
+└─ vite.config.js
+
+```
+```
+MTransfer
+├─ .env
+├─ eslint.config.js
+├─ index.html
+├─ package-lock.json
+├─ package.json
+├─ public
+│  └─ vite.svg
+├─ README.md
+├─ src
+│  ├─ api
+│  │  ├─ auth.js
+│  │  ├─ axios.js
+│  │  └─ files.js
+│  ├─ App.jsx
+│  ├─ assets
+│  │  └─ MTransfer_logo.svg
+│  ├─ components
+│  │  ├─ FileCard.jsx
+│  │  └─ ProtectedRoute.jsx
+│  ├─ index.css
+│  ├─ main.jsx
+│  ├─ pages
+│  │  ├─ DownloadFile.jsx
+│  │  ├─ Home.jsx
+│  │  ├─ Login.jsx
+│  │  └─ Register.jsx
+│  └─ store
+│     └─ authStore.js
+└─ vite.config.js
+
+```

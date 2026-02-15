@@ -5,18 +5,39 @@ import { register } from "../api/auth";
 import MTransfer_logo from "../assets/MTransfer_logo.svg";
 
 const Register = () => {
-  const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
 
+  const validate = () => {
+    if (!email.trim()) {
+      toast.error("Email jest wymagany");
+      return false;
+    }
+
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      toast.error("Podaj poprawny email");
+      return false;
+    }
+
+    if (password.length < 6) {
+      toast.error("Hasło musi mieć co najmniej 6 znaków");
+      return false;
+    }
+
+    return true;
+  };
+
   // obsługa rejestracji
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    if (!validate()) return;
+
     try {
-      await register(username, email, password);
+      await register(email, password);
       toast.success("Rejestracja udana ✅");
       navigate("/login");
     } catch (err) {
@@ -30,8 +51,8 @@ const Register = () => {
       <div className="flex items-center justify-center w-full h-full">
         <div className="w-96 min-h-96 h-fit p-4 bg-white rounded-xl flex flex-col items-center justify-between shadow-lg py-8">
           <h2 className="text-2xl font-bold">Zarejestruj się</h2>
-          <form onSubmit={handleSubmit} className="space-y-4 w-full py-8">
-            <input type="text" placeholder="Nazwa użytkownika" className="w-full p-2 border-b border-gray-300 focus:rounded focus:outline-none focus:ring-1 focus:ring-blue-500 transition-all duration-300" value={username} onChange={(e) => setUsername(e.target.value)} />
+          <form onSubmit={handleSubmit} className="space-y-4 w-full">
+  
             <input type="email" placeholder="Email" className="w-full p-2 border-b border-gray-300 focus:rounded focus:outline-none focus:ring-1 focus:ring-blue-500 transition-all duration-300" value={email} onChange={(e) => setEmail(e.target.value)} />
             <input
               type={showPassword ? "text" : "password"}

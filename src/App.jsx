@@ -9,7 +9,7 @@ import Download from "./pages/DownloadFile";
 function App() {
   return (
     <BrowserRouter>
-      <div className="w-dvw h-dvh flex justify-center items-center-safe bg-blue-500">
+      <div className="w-dvw h-full flex justify-center items-center-safe bg-blue-500">
         <Toaster richColors position="bottom-right" />
         <Routes>
           <Route path="/" element={<Navigate to="/home" replace />} />

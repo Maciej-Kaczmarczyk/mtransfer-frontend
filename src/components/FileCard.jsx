@@ -1,7 +1,7 @@
 import React from "react";
 import { toast } from "sonner";
 
-const FileCard = ({ title, size, createdAt, downloadId }) => {
+const FileCard = ({ title, size, createdAt, downloadId, expiresAt }) => {
   const handleCopyLink = () => {
     const baseUrl = window.location.origin;
     const link = `${baseUrl}/f/${downloadId}`;
@@ -20,7 +20,16 @@ const FileCard = ({ title, size, createdAt, downloadId }) => {
       <div className="flex flex-col gap-1 w-full mt-2">
         <p className="text-gray-700 text-sm sm:text-base">{(size / 1024).toFixed(1)} KB</p>
         <p className="text-xs sm:text-sm text-gray-600">
-          Dodano: <span className="text-gray-700 font-semibold">{new Date(createdAt).toLocaleDateString()}</span>
+          Wygasa:{" "}
+          <span className="text-gray-700 font-semibold">
+            {new Date(expiresAt).toLocaleString("pl-PL", {
+              year: "numeric",
+              month: "2-digit",
+              day: "2-digit",
+              hour: "2-digit",
+              minute: "2-digit",
+            })}
+          </span>
         </p>
       </div>
       <div className="flex justify-between items-center w-full ring-1 ring-gray-300 py-2 px-2 rounded-lg mt-3">
