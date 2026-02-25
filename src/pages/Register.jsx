@@ -30,10 +30,8 @@ const Register = () => {
     return true;
   };
 
-  // obsługa rejestracji
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     if (!validate()) return;
 
     try {
@@ -46,35 +44,51 @@ const Register = () => {
   };
 
   return (
-    <div className="flex flex-col items-center justify-start w-dvw h-dvh">
-      <img src={MTransfer_logo} alt="MTransfer Logo" className="w-52 p-4" />
-      <div className="flex items-center justify-center w-full h-full">
-        <div className="w-96 min-h-96 h-fit p-4 bg-white rounded-xl flex flex-col items-center justify-between shadow-lg py-8">
-          <h2 className="text-2xl font-bold">Zarejestruj się</h2>
-          <form onSubmit={handleSubmit} className="space-y-4 w-full">
-  
-            <input type="email" placeholder="Email" className="w-full p-2 border-b border-gray-300 focus:rounded focus:outline-none focus:ring-1 focus:ring-blue-500 transition-all duration-300" value={email} onChange={(e) => setEmail(e.target.value)} />
-            <input
-              type={showPassword ? "text" : "password"}
-              placeholder="Hasło"
-              className="w-full p-2 border-b border-gray-300 focus:rounded focus:outline-none focus:ring-1 focus:ring-blue-500 transition-all duration-300"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-            />
+    <div className="flex flex-col items-center justify-start w-full min-h-dvh bg-blue-500">
+      {/* Responsywne logo */}
+      <img src={MTransfer_logo} alt="MTransfer Logo" className="w-40 sm:w-52 p-6 mt-4" />
+      
+      <div className="flex items-center justify-center w-full flex-1 px-4 pb-8">
+        {/* Elastyczny kontener: w-full na mobile, max-w-sm/96 na desktop */}
+        <div className="w-full max-w-sm sm:w-96 min-h-[400px] h-fit p-6 sm:p-8 bg-white rounded-xl flex flex-col items-center justify-between shadow-lg py-8">
+          <h2 className="text-2xl font-bold mb-6">Zarejestruj się</h2>
+          
+          <form onSubmit={handleSubmit} className="space-y-6 w-full">
+            <div className="space-y-4">
+              <input 
+                type="email" 
+                placeholder="Email" 
+                className="w-full p-3 border-b border-gray-300 focus:rounded focus:outline-none focus:ring-1 focus:ring-blue-500 transition-all duration-300" 
+                value={email} 
+                onChange={(e) => setEmail(e.target.value)} 
+              />
+              <input
+                type={showPassword ? "text" : "password"}
+                placeholder="Hasło"
+                className="w-full p-3 border-b border-gray-300 focus:rounded focus:outline-none focus:ring-1 focus:ring-blue-500 transition-all duration-300"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+              />
+            </div>
 
             <div className="flex items-center">
-              <input onChange={(e) => setShowPassword(e.target.checked)} type="checkbox" id="showPassword" className="mr-2 hover:cursor-pointer" />
-              <label htmlFor="showPassword" className="text-sm font-semibold text-gray-500 hover:cursor-pointer">
+              <input 
+                onChange={(e) => setShowPassword(e.target.checked)} 
+                type="checkbox" 
+                id="showPassword" 
+                className="w-4 h-4 mr-2 hover:cursor-pointer accent-blue-500" 
+              />
+              <label htmlFor="showPassword" className="text-sm font-semibold text-gray-500 hover:cursor-pointer select-none">
                 Pokaż hasło
               </label>
             </div>
 
-            <button type="submit" className="w-full font-semibold p-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 hover:cursor-pointer">
+            <button type="submit" className="w-full font-semibold p-3 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors duration-300">
               Zarejestruj się
             </button>
           </form>
 
-          <p className="text-sm text-gray-500">
+          <p className="text-sm text-gray-500 mt-8">
             Masz już konto?{" "}
             <NavLink to="/login" className="text-blue-500 font-semibold hover:text-blue-600">
               Zaloguj się

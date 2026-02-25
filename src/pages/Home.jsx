@@ -113,12 +113,12 @@ const Home = () => {
   }, []);
 
   return (
-    <div className="p-8 flex flex-col items-center justify-start w-dvw h-dvh gap-4">
+    <div className="md:p-8 flex flex-col items-center justify-start w-dvw h-dvh gap-4">
       {/* Pasek górny */}
       <div className="w-full flex justify-between">
-        <div className="w-full p-4 bg-white rounded-xl flex items-center justify-between gap-4 shadow-lg">
+        <div className="w-full p-4 bg-white rounded-xl flex md:flex-row flex-col items-center justify-between gap-4 shadow-lg">
           <img src={MTransfer_logo} alt="MTransfer Logo" className="w-52 px-4" />
-          <div className="flex w-1/3 justify-end gap-8">
+          <div className="flex md:flex-row flex-col md:w-1/3 justify-end gap-8">
             <div className="flex items-center gap-4">
               <div className="relative w-10 h-10 overflow-hidden bg-gray-100 rounded-full dark:bg-blue-500">
                 <svg className="absolute w-12 h-12 text-blue-400 -left-1" fill="currentColor" viewBox="0 0 20 20">
@@ -127,7 +127,7 @@ const Home = () => {
               </div>
               <p>Witaj {user}</p>
             </div>
-            <button onClick={handleLogout} className="text-xs w-1/3 font-semibold px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 hover:cursor-pointer flex items-center justify-center gap-2 pr-4">
+            <button onClick={handleLogout} className="text-xs md:w-1/3 font-semibold px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 hover:cursor-pointer flex items-center justify-center gap-2 pr-4">
               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-6">
                 <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 9V5.25A2.25 2.25 0 0 0 13.5 3h-6a2.25 2.25 0 0 0-2.25 2.25v13.5A2.25 2.25 0 0 0 7.5 21h6a2.25 2.25 0 0 0 2.25-2.25V15M12 9l-3 3m0 0 3 3m-3-3h12.75" />
               </svg>
@@ -137,9 +137,9 @@ const Home = () => {
         </div>
       </div>
 
-      <div className="flex gap-4 w-full h-full">
+      <div className="flex-col md:flex-row flex gap-4 w-full h-full">
         {/* Lewy panel */}
-        <div className="w-1/3 h-fit p-4 bg-white rounded-xl flex flex-col items-center justify-start gap-4 shadow-lg">
+        <div className="w-full md:w-1/3 h-fit p-4 bg-white rounded-xl flex flex-col items-center justify-start gap-4 shadow-lg">
           {files.length > 0 && (
             <div className="flex flex-col w-full gap-2">
               {files.map((f, i) => (
@@ -180,7 +180,7 @@ const Home = () => {
               </label>
             </div>
 
-            <div className="flex w-full">
+            <div className="flex flex-col lg:flex-row gap-4 w-full">
               <p className="text-gray-500">Wybierz ważność pliku:</p>
               <div className="w-full flex justify-around items-center">
                 <label className="cursor-pointer">
@@ -233,7 +233,7 @@ const Home = () => {
         </div>
 
         {/* Prawy panel */}
-        <div className="w-2/3 h-fit p-8 bg-white rounded-xl shadow-lg grid gap-8 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="md:w-2/3 h-fit p-8 bg-white rounded-xl shadow-lg grid gap-8 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
           {userFiles.length > 0 ? userFiles.map((file) => <FileCard key={file.id} title={file.originalName} size={file.size} createdAt={file.createdAt} downloadId={file.downloadId} expiresAt={file.expiresAt} />) : <p className="text-gray-500 text-sm">Brak przesłanych plików</p>}
         </div>
       </div>
