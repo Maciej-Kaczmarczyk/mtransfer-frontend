@@ -1,7 +1,11 @@
 import axios from "axios";
 import Cookies from "js-cookie";
 
-// Instancja Axios z domyślną konfiguracją
+/**
+ * Tworzy instancję Axios z domyślną konfiguracją
+ * - baseURL: Pobierana z zmiennej środowiskowej VITE_API_URL
+ * - headers: Ustawia Content-Type na application/json
+ */
 const api = axios.create({
   baseURL: import.meta.env.VITE_API_URL,
   headers: {
@@ -9,7 +13,6 @@ const api = axios.create({
   },
 });
 
-// Dodanie nagłówka Authorization do każdego żądania jeśli token istnieje
 api.interceptors.request.use(
   (config) => {
     const accessToken = Cookies.get("accessToken");

@@ -1,6 +1,13 @@
 import api from "./axios";
 import Cookies from "js-cookie";
 
+/**
+ * 
+ * @param {string} email 
+ * @param {string} password 
+ * @returns {Promise<Object>} Dane użytkownika i token dostępu
+ * @throws {Error} Błąd logowania 
+ */
 export const login = async (email, password) => {
   try {
     const response = await api.post("/auth/login", {
@@ -24,6 +31,14 @@ export const login = async (email, password) => {
   }
 };
 
+
+/**
+ * Rejestruje nowego użytkownika
+ * @param {string} email 
+ * @param {string} password 
+ * @returns {Promise<Object>} Dane zarejestrowanego użytkownika
+ * @throws {Error} Błąd rejestracji
+ */
 export const register = async (email, password) => {
   try {
     const response = await api.post("/auth/register", {

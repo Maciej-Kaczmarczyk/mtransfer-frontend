@@ -9,6 +9,7 @@ const Download = () => {
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(true);
 
+  
   useEffect(() => {
     const fetchFileInfo = async () => {
       try {
@@ -25,6 +26,13 @@ const Download = () => {
 
   console.log(fileInfo);
 
+  /**
+   * Pobiera plik z serwera
+   * - Wysyła żądanie GET do endpointu /files/download/:id z opcjonalnym hasłem
+   * - Oczekuje odpowiedzi w formie blob (plik)
+   * - Tworzy URL dla pobranego pliku i inicjuje pobieranie
+   * - Obsługuje błędy, wyświetlając odpowiednie powiadomienia
+   */
   const handleDownload = async () => {
     try {
       const res = await axios.get(`/files/download/${id}`, {

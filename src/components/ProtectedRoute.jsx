@@ -4,6 +4,13 @@ import { toast } from "sonner";
 import api from "../api/axios";
 import { useAuthStore } from "../store/authStore";
 
+/**
+ *  Komponent chroniący trasy wymagające autoryzacji
+ *  - Sprawdza ważność tokena przy montowaniu
+ *  - Jeśli token jest ważny, renderuje Outlet (dzieci)
+ *  - Jeśli token jest nieważny, przekierowuje do strony logowania
+ * @returns 
+ */
 const ProtectedRoute = () => {
   const [isAuthorized, setIsAuthorized] = useState(null);
   const setUser = useAuthStore((state) => state.setUser);

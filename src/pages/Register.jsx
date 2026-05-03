@@ -10,6 +10,13 @@ const Register = () => {
   const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
 
+  /**
+   *  Waliduje dane formularza rejestracji
+   *  - Sprawdza, czy email jest podany i ma poprawny format
+   *  - Sprawdza, czy hasło ma co najmniej 6 znaków
+   *  - Wyświetla odpowiednie powiadomienia o błędach
+   * @returns 
+   */
   const validate = () => {
     if (!email.trim()) {
       toast.error("Email jest wymagany");
@@ -30,6 +37,10 @@ const Register = () => {
     return true;
   };
 
+  /**
+   * Obsługuje przesyłanie formularza rejestracji
+   * @param {Event} e 
+   */ 
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!validate()) return;
@@ -45,11 +56,9 @@ const Register = () => {
 
   return (
     <div className="flex flex-col items-center justify-start w-full min-h-dvh bg-blue-500">
-      {/* Responsywne logo */}
       <img src={MTransfer_logo} alt="MTransfer Logo" className="w-40 sm:w-52 p-6 mt-4" />
       
       <div className="flex items-center justify-center w-full flex-1 px-4 pb-8">
-        {/* Elastyczny kontener: w-full na mobile, max-w-sm/96 na desktop */}
         <div className="w-full max-w-sm sm:w-96 min-h-[400px] h-fit p-6 sm:p-8 bg-white rounded-xl flex flex-col items-center justify-between shadow-lg py-8">
           <h2 className="text-2xl font-bold mb-6">Zarejestruj się</h2>
           

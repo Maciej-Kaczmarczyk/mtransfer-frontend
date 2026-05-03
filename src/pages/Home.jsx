@@ -24,7 +24,9 @@ const Home = () => {
   const [isUploading, setIsUploading] = useState(false);
   const [isDragging, setIsDragging] = useState(false);
 
-  // wyloguj użytkownika
+  /**
+   * Wylogowuje użytkownika
+   */
   const handleLogout = () => {
     Cookies.remove("token");
     logout();
@@ -32,7 +34,10 @@ const Home = () => {
     navigate("/login");
   };
 
-  // obsługa wysyłania pliku
+  /**
+   * Wysyła plik do serwera
+   * @param {Event} e 
+   */
   const handleUpload = async (e) => {
     e.preventDefault();
 
@@ -64,7 +69,10 @@ const Home = () => {
     }
   };
 
-  // obsługa wyboru pliku
+  /**
+   * Obsługuje wybór pliku
+   * @param {Event} e 
+   */
   const handleFileSelect = (e) => {
     const selectedFiles = Array.from(e.target.files);
     if (selectedFiles.length > 0) {
@@ -72,19 +80,30 @@ const Home = () => {
     }
   };
 
-  // obsługa przeciągania i upuszczania pliku
+  /**
+   * Obsługuje przeciąganie pliku
+   * @param {Event} e 
+   */
   const handleDragOver = (e) => {
     e.preventDefault();
     e.stopPropagation();
     setIsDragging(true);
   };
 
+  /**
+   * Obsługuje opuszczenie obszaru przeciągania
+   * @param {Event} e 
+   */
   const handleDragLeave = (e) => {
     e.preventDefault();
     e.stopPropagation();
     setIsDragging(false);
   };
 
+  /**
+   * Obsługuje upuszczenie pliku
+   * @param {Event} e 
+   */
   const handleDrop = useCallback((e) => {
     e.preventDefault();
     e.stopPropagation();
@@ -96,7 +115,9 @@ const Home = () => {
     }
   }, []);
 
-  // pobierz pliki użytkownika
+  /**
+   * Pobiera pliki użytkownika
+   */
   const fetchFiles = async () => {
     try {
       const files = await getUserFiles();

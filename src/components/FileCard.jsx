@@ -2,6 +2,13 @@ import React from "react";
 import { toast } from "sonner";
 
 const FileCard = ({ title, size, createdAt, downloadId, expiresAt }) => {
+
+  /**
+   * Kopiuje link do pobrania pliku do schowka
+   * Tworzy pełny URL do pobrania na podstawie downloadId i aktualnego adresu strony
+   * Używa API Clipboard do skopiowania linku
+   * Wyświetla powiadomienie o sukcesie po skopiowaniu
+   */
   const handleCopyLink = () => {
     const baseUrl = window.location.origin;
     const link = `${baseUrl}/f/${downloadId}`;
